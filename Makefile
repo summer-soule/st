@@ -7,7 +7,7 @@ include config.mk
 SRC = st.c x.c
 OBJ = $(SRC:.c=.o)
 
-all: st
+all: st-polar
 
 config.h:
 	cp config.def.h config.h
@@ -20,7 +20,7 @@ x.o: arg.h config.h st.h win.h
 
 $(OBJ): config.h config.mk
 
-st: $(OBJ)
+st-polar: $(OBJ)
 	$(CC) -o $@ $(OBJ) $(STLDFLAGS)
 
 patch: 
@@ -37,9 +37,9 @@ dist: clean
 	tar -cf - st-polar-$(VERSION) | gzip > st-polar-$(VERSION).tar.gz
 	rm -rf st-polar-$(VERSION)
 
-install: st
+install: st-polar
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp -f st $(DESTDIR)$(PREFIX)/bin
+	cp -f st-polar $(DESTDIR)$(PREFIX)/bin
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/st-polar
 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
 	sed "s/VERSION/$(VERSION)/g" < st-polar.1 > $(DESTDIR)$(MANPREFIX)/man1/st-polar.1
