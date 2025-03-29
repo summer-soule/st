@@ -40,15 +40,15 @@ dist: clean
 install: st
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	cp -f st $(DESTDIR)$(PREFIX)/bin
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/st
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/st-polar
 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
-	sed "s/VERSION/$(VERSION)/g" < st.1 > $(DESTDIR)$(MANPREFIX)/man1/st.1
-	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/st.1
-	tic -sx st.info
-	@echo Please see the README file regarding the terminfo entry of st.
+	sed "s/VERSION/$(VERSION)/g" < st-polar.1 > $(DESTDIR)$(MANPREFIX)/man1/st-polar.1
+	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/st-polar.1
+	tic -sx st-polar.info
+	@echo Please see the README file regarding the terminfo entry of st-polar.
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/st
-	rm -f $(DESTDIR)$(MANPREFIX)/man1/st.1
+	rm -f $(DESTDIR)$(PREFIX)/bin/st-polar
+	rm -f $(DESTDIR)$(MANPREFIX)/man1/st-polar.1
 
 .PHONY: all clean dist install uninstall patch
