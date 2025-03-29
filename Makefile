@@ -27,15 +27,15 @@ patch:
 	git apply --verbose patches/st-lunaperche-0.9.2.diff patches/st-boxdraw_v2-0.9.2.diff patches/st-glyph-wide-support-boxdraw-20220411-ef05519.diff patches/st-clickurl-nocontrol-polar-0.9.2.diff
 
 clean:
-	rm -f st $(OBJ) st-$(VERSION).tar.gz
+	rm -f st-polar $(OBJ) st-polar-$(VERSION).tar.gz
 
 dist: clean
-	mkdir -p st-$(VERSION)
+	mkdir -p st-polar-$(VERSION)
 	cp -R FAQ LEGACY TODO LICENSE Makefile README config.mk\
-		config.def.h st.info st.1 arg.h st.h win.h $(SRC)\
-		st-$(VERSION)
-	tar -cf - st-$(VERSION) | gzip > st-$(VERSION).tar.gz
-	rm -rf st-$(VERSION)
+		config.def.h st.info st.1 arg.h st.h win.h patches $(SRC)\
+		st-polar-$(VERSION)
+	tar -cf - st-polar-$(VERSION) | gzip > st-polar-$(VERSION).tar.gz
+	rm -rf st-polar-$(VERSION)
 
 install: st
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
