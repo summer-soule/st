@@ -4,7 +4,7 @@
 
 include config.mk
 
-SRC = st.c x.c
+SRC = st.c x.c boxdraw.c
 OBJ = $(SRC:.c=.o)
 
 all: st
@@ -17,11 +17,15 @@ config.h:
 
 st.o: config.h st.h win.h
 x.o: arg.h config.h st.h win.h
+boxdraw.o: config.h st.h boxdraw_data.h
 
 $(OBJ): config.h config.mk
 
 st: $(OBJ)
 	$(CC) -o $@ $(OBJ) $(STLDFLAGS)
+
+patch: 
+	git apply --verbose patches/st-lunaperche-0.9.2.diff patches/st-boxdraw_v2-0.9.2.diff patches/st-glyph-wide-support-boxdraw-20220411-ef05519.diff patches/st-clickurl-nocontrol-polar-0.9.2.diff
 
 clean:
 	rm -f st $(OBJ) st-$(VERSION).tar.gz
@@ -48,4 +52,4 @@ uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/st
 	rm -f $(DESTDIR)$(MANPREFIX)/man1/st.1
 
-.PHONY: all clean dist install uninstall
+.PHONY: all clean dist install uninstall patch
